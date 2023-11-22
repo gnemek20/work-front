@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="banner">
-      <img src="@/assets/banner.jpg">
+      <Banner />
     </div>
     <div class="content">
       <div>
@@ -47,7 +47,12 @@
 </template>
 
 <script>
+import Banner from '@/components/Banner.vue'
+
 export default {
+  components: {
+    Banner
+  },
   mounted() {
     addEventListener("scroll", this.scrolling);
   },
