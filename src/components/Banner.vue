@@ -46,7 +46,7 @@ export default {
         beforeImage.className = this.hide;
         image.className = this.show;
         radioButton.checked = true;
-      }, 8000);
+      }, 10000);
     },
     clickRadioButton(number) {
       this.clearThisInterval();
