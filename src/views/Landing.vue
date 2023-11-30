@@ -7,13 +7,12 @@
         </div>
         <div class="flex align-center">
           <div class="category">
-            <h4>Warm</h4>
-            <h4>Cool</h4>
-            <h4>Daily</h4>
-            <h4>Lovely</h4>
+            <div :ref="`category${index}`" class="category-text" v-for="(category, index) in categories" v-bind:key="index" @mouseenter="hoveredCategory(index)" @mouseleave="leavedCategory(index)">
+              <h4>{{ category.name }}</h4>
+            </div>
           </div>
-          <div ref="header-state" class="state">
-            <div class="state-image">
+          <div ref="state-header" class="state">
+            <div class="state-image relative">
               <img src="@/assets/icons/user.svg" width="21px">
             </div>
             <div class="state-image">
@@ -53,6 +52,24 @@ export default {
   components: {
     Banner
   },
+  data() {
+    return {
+      categories: [
+        {
+          name: 'Warm'
+        },
+        {
+          name: 'Cool'
+        },
+        {
+          name: 'Daily'
+        },
+        {
+          name: 'Lovely'
+        }
+      ]
+    }
+  },
   mounted() {
     addEventListener("scroll", this.scrolling);
   },
@@ -61,10 +78,10 @@ export default {
       const positionY = window.scrollY;
       const stickyHeader = this.$refs['sticky-header'];
       const header = this.$refs['header'];
-      const headerState = this.$refs['header-state'];
+      const stateHeader = this.$refs['state-header'];
 
       const uncolored = 'transparent';
-      const colored = '#f0ece9'
+      const colored = 'var(--gray)';
 
       const white = 'var(--white)';
       const black = 'var(--black)';
@@ -75,13 +92,21 @@ export default {
       if (positionY >= 250 && stickyHeader.style.backgroundColor !== colored) {
         stickyHeader.style.backgroundColor = colored;
         header.style.color = black;
-        headerState.style.filter = uninverted;
+        stateHeader.style.filter = uninverted;
       }
       else if (positionY < 250 && stickyHeader.style.backgroundColor !== uncolored) {
         stickyHeader.style.backgroundColor = uncolored;
         header.style.color = white;
-        headerState.style.filter = inverted;
+        stateHeader.style.filter = inverted;
       }
+    },
+    hoveredCategory(index) {
+      const category = this.$refs[`category${index}`][0];
+      category.style.borderBottom = '2px solid';
+    },
+    leavedCategory(index) {
+      const category = this.$refs[`category${index}`][0];
+      category.style.borderBottom = '2px solid transparent';
     }
   }
 }
@@ -104,10 +129,13 @@ export default {
 
     .category {
       display: flex;
-      gap: 50px
-    }
-    .category > * {
-      cursor: pointer;
+      gap: 50px;
+
+      .category-text {
+        cursor: pointer;
+        padding: 7px;
+        border-bottom: 2px solid transparent;
+      }
     }
 
     .state {
@@ -117,7 +145,8 @@ export default {
       filter: invert(1);
 
       .state-image {
-        padding: 5px;
+        padding: 7px;
+        border-bottom: 2px solid transparent;
       }
     }
     .state > * {
