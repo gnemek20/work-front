@@ -12,7 +12,7 @@
             </div>
           </div>
           <div ref="state-header" class="state">
-            <div class="state-image relative">
+            <div class="state-image">
               <img src="@/assets/icons/user.svg" width="21px">
             </div>
             <div class="state-image">
