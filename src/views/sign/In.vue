@@ -11,17 +11,17 @@
         <h4>로그인</h4>
       </div>
       <div class="area">
-        <div class="form">
+        <div class="form" @keydown.enter="signIn">
           <div class="inputs">
             <div class="flex">
-              <input type="text" placeholder="아이디">
+              <input type="text" ref="id" v-model="user.id" placeholder="아이디" @keydown.space.prevent>
             </div>
             <div class="flex">
-              <input type="password" placeholder="비밀번호">
+              <input type="password" ref="pwd" v-model="user.pwd" placeholder="비밀번호" @keydown.space.prevent>
             </div>
           </div>
           <div class="flex">
-            <button>로그인</button>
+            <button @click="signIn">로그인</button>
           </div>
         </div>
         <div class="options">
@@ -39,6 +39,38 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      user: {
+        id: '',
+        pwd: ''
+      }
+    }
+  },
+  methods: {
+    signIn() {
+      const id = this.user.id;
+      const pwd = this.user.pwd;
+
+      if (id.length === 0 || pwd.length === 0) return;
+
+      this.$post('/users/signin', {
+        user: this.user
+      }).then((res) => {
+        if (res.status === 200 && res.data.status) {
+          console.log('good');
+        }
+        else if (!res.data.status) {
+          alert('아이디 혹은 비밀번호를 다시 확인해주세요');
+        }
+      })
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .header {

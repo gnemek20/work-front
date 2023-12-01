@@ -37,7 +37,7 @@
         </div>
         <div class="flex justify-center">
           <div class="list">
-            <p v-for="count in 10" v-bind:key="count">{{ count }}</p>
+            <p v-for="count in 5" v-bind:key="count">{{ count }}</p>
           </div>
         </div>
       </div>
