@@ -1,7 +1,6 @@
 <template>
   <div>
     <Header />
-    <!-- 네이버 그라폴리오 -->
     <div class="cover">
       <div class="image-cover">
         <img src="@/assets/cover1.jpg">
@@ -9,10 +8,9 @@
       <div class="cover-box">
         <div class="name">
           <h1>Perfume</h1>
-          <h5>설명</h5>
         </div>
         <div class="condition-box">
-          <!-- 태그랑 검색기능 추가 -->
+          <h4>상품을 검색하거나 표시될 상품의 조건을 설정할 수 있는 창</h4>
         </div>
       </div>
     </div>
@@ -25,6 +23,10 @@ import Header from '@/components/Header.vue'
 export default {
   components: {
     Header
+  },
+  data() {
+    return {
+    }
   }
 }
 </script>
@@ -65,8 +67,10 @@ export default {
     .condition-box {
       margin-top: auto;
       display: flex;
-      width: 900px;
-      height: 250px;
+      flex-direction: column;
+      width: calc(900px - 40px);
+      height: calc(250px - 40px);
+      padding: 20px;
       background-color: rgba(#f5f5f5, 0.8);
     }
   }

@@ -56,16 +56,7 @@ export default {
     return {
       categories: [
         {
-          name: 'Warm'
-        },
-        {
-          name: 'Cool'
-        },
-        {
-          name: 'Daily'
-        },
-        {
-          name: 'Lovely'
+          name: 'Perfume'
         }
       ]
     }
@@ -81,7 +72,7 @@ export default {
       const stateHeader = this.$refs['state-header'];
 
       const uncolored = 'transparent';
-      const colored = 'var(--gray)';
+      const colored = 'var(--light-gray)';
 
       const white = 'var(--white)';
       const black = 'var(--black)';

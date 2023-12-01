@@ -46,12 +46,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--gray);
+  background-color: var(--light-gray);
 
   hr {
     width: 100%;
     border: none;
-    border-top: 1px solid var(--gray);
+    border-top: 1px solid var(--light-gray);
   }
   .title {
     padding: 60px 0px 26px;
@@ -69,7 +69,7 @@
     width: 800px;
     height: 250px;
     padding: 20px;
-    border: 1px solid #8c8c8c;
+    border: 1px solid var(--normal-gray);
     margin-top: 30px;
 
     .form {
@@ -85,7 +85,7 @@
           width: 300px;
           padding: 10px;
           border: none;
-          border: 1px solid #8c8c8c;
+          border: 1px solid var(--normal-gray);
           outline: none;
           font-weight: bold;
         }
@@ -105,7 +105,7 @@
       display: flex;
       margin-top: 30px;
       padding: 5px 20px 0px;
-      border-top: 1px solid #8c8c8c;
+      border-top: 1px solid var(--normal-gray);
       gap: 50px;
 
       .option-text:hover {

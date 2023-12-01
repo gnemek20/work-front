@@ -54,7 +54,7 @@ export default {
   flex-direction: column;
   width: calc(100% - 200px);
   padding: 20px 100px;
-  background-color: var(--gray);
+  background-color: var(--light-gray);
   gap: 10px;
 
   .category {
