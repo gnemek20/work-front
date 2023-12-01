@@ -27,7 +27,11 @@ const routes = [
   },
   {
     path: '/member',
-    component: () => import('@/views/state/Member.vue'),
+    component: () => import('@/views/state/Member.vue')
+  },
+  {
+    path: '/product',
+    component: () => import('@/views/Product.vue')
   }
 ]
 

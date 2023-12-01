@@ -30,16 +30,7 @@ export default {
     return {
       categories: [
         {
-          name: 'Warm'
-        },
-        {
-          name: 'Cool'
-        },
-        {
-          name: 'Daily'
-        },
-        {
-          name: 'Lovely'
+          name: 'Perfume'
         }
       ]
     }
@@ -62,7 +53,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: calc(100% - 200px);
-  padding: 50px 100px 20px;
+  padding: 20px 100px;
   background-color: var(--gray);
   gap: 10px;
 

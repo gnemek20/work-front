@@ -54,7 +54,7 @@
     border-top: 1px solid var(--gray);
   }
   .title {
-    padding: 60px 0px 30px;
+    padding: 60px 0px 26px;
   }
 }
 
