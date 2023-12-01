@@ -9,7 +9,7 @@ const checkAuth = (sign) => (to, from, next) => {
   const auth = session['id'] == undefined ? false : true;
 
   if (sign === auth) next();
-  else next('/signin');
+  else next({path: '/signin', query: {beforePageLocation: to.path.replace(/\//g, '')}});
 }
 
 const routes = [
@@ -27,7 +27,8 @@ const routes = [
   },
   {
     path: '/member',
-    component: () => import('@/views/state/Member.vue')
+    component: () => import('@/views/state/Member.vue'),
+    beforeEnter: checkAuth(true)
   },
   {
     path: '/product',

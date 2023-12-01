@@ -63,6 +63,7 @@ export default {
   },
   mounted() {
     addEventListener("scroll", this.scrolling);
+    this.$session.destroy();
   },
   methods: {
     scrolling() {
