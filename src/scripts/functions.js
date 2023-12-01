@@ -7,6 +7,7 @@ export default {
   install(Vue) {
     Vue.prototype.$reload = functions.reload;
     Vue.prototype.$push = functions.push;
+    Vue.prototype.$replace = functions.replace;
     Vue.prototype.$query = functions.query;
     Vue.prototype.$get = functions.get;
     Vue.prototype.$post = functions.post;
@@ -19,6 +20,9 @@ export const functions = {
   },
   push: (location) => {
     return router.push(location).catch(() => {});
+  },
+  replace: (location) => {
+    return router.replace(location).catch(() => {});
   },
   query: (location, query) => {
     return router.push({path: location, query: query}).catch(() => {});

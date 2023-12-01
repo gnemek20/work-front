@@ -61,7 +61,11 @@ export default {
         user: this.user
       }).then((res) => {
         if (res.status === 200 && res.data.status) {
-          console.log('good');
+          this.$session.set('id', res.data.id);
+          this.$session.set('name', res.data.name);
+
+          if (this.$route.query.beforePageLocation !== undefined) this.$replace(`/${this.$route.query.beforePageLocation}`);
+          else this.$replace('/');
         }
         else if (!res.data.status) {
           alert('아이디 혹은 비밀번호를 다시 확인해주세요');
