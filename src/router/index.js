@@ -9,7 +9,7 @@ const checkAuth = (sign) => (to, from, next) => {
   const auth = session['id'] == undefined ? false : true;
 
   if (sign === auth) next();
-  else next('/');
+  else next('/signin');
 }
 
 const routes = [
