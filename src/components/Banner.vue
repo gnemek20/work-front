@@ -33,6 +33,9 @@ export default {
     this.imagesCount = this.images.length;
     this.clickRadioButton(1);
   },
+  beforeDestroy() {
+    this.clearThisInterval();
+  },
   methods: {
     changeImages(number) {
       this.count = number;

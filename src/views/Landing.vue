@@ -12,7 +12,7 @@
             </div>
           </div>
           <div ref="state-header" class="state">
-            <div class="state-image">
+            <div class="state-image" @click="$push('/member')">
               <img src="@/assets/icons/user.svg" width="21px">
             </div>
             <div class="state-image">
