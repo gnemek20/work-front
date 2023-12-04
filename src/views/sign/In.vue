@@ -2,7 +2,9 @@
   <div class="flex flex-column align-center">
     <div class="header">
       <div class="title">
-        <h1>타이틀</h1>
+        <div class="flex cursor-pointer" @click="$replace('/')"> 
+          <h1>타이틀</h1>
+        </div>
       </div>
       <hr>
     </div>
@@ -50,6 +52,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.$refs['id'].focus();
+  },
   methods: {
     signIn() {
       const id = this.user.id;
@@ -64,7 +69,7 @@ export default {
           if (this.$session.get('id') !== undefined) {
             this.$session.destroy();
           }
-          
+
           this.$session.set('id', res.data.id);
           this.$session.set('name', res.data.name);
 
@@ -94,7 +99,7 @@ export default {
     border-top: 1px solid var(--light-gray);
   }
   .title {
-    padding: 60px 0px 26px;
+    padding: 60px 0px 33px;
   }
 }
 

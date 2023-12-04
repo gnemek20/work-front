@@ -1,6 +1,27 @@
 <template>
   <div>
     <div ref="sticky-header" class="sticky-header">
+      <div class="top-box">
+        <div class="notice-box">
+          <h5>notice</h5>
+        </div>
+        <div class="sign-box" v-if="$session.get('id') === undefined">
+          <div @click="$push('/signin')">
+            <h5>로그인</h5>
+          </div>
+          <div>
+            <h5>회원가입</h5>
+          </div>
+        </div>
+        <div class="sign-box" v-else>
+        <div @click="signOut">
+          <h5>로그아웃</h5>
+        </div>
+        <div>
+          <h5>정보수정</h5>
+        </div>
+      </div>
+      </div>
       <div ref="header" class="header">
         <div class="flex">
           <div class="cursor-pointer flex" @click="$reload()"> 
@@ -66,7 +87,6 @@ export default {
   },
   mounted() {
     addEventListener("scroll", this.scrolling);
-    this.$session.destroy();
   },
   beforeDestroy() {
     removeEventListener("scroll", this.scrolling);
@@ -105,6 +125,10 @@ export default {
     leavedCategory(index) {
       const category = this.$refs[`category${index}`][0];
       category.style.borderBottom = '2px solid transparent';
+    },
+    signOut() {
+      this.$session.destroy();
+      this.$reload();
     }
   }
 }
@@ -116,11 +140,33 @@ export default {
   z-index: 1;
   left: 0;
   width: calc(100% - 200px);
-  padding: 50px 100px 20px;
+  padding: 0px 100px 20px;
   transition-duration: 300ms;
 
+  .top-box {
+    position: absolute;
+    left: 0;
+    display: flex;
+    padding: 0px 100px;
+    width: calc(100% - 200px);
+    background-color: var(--light-gray);
+
+    .notice-box > * {
+      padding: 5px;
+    }
+    .sign-box {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+    .sign-box > * {
+      cursor: pointer;
+      padding: 5px;
+    }
+  }
   .header {
     display: flex;
+    margin-top: 50px;
     flex-direction: column;
     gap: 10px;
     color: var(--white);
