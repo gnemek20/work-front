@@ -1,11 +1,13 @@
 <template>
   <div class="header">
     <div class="flex">
-      <h1>타이틀</h1>
+      <div class="flex cursor-pointer" @click="$push('/')">
+        <h1>타이틀</h1>
+      </div>
     </div>
     <div class="flex align-center">
       <div class="category">
-        <div :ref="`category${index}`" class="category-text" v-for="(category, index) in categories" v-bind:key="index" @mouseenter="hoveredCategory(index)" @mouseleave="leavedCategory(index)">
+        <div :ref="`category${index}`" class="category-text" v-for="(category, index) in categories" v-bind:key="index" @mouseenter="hoveredCategory(index)" @mouseleave="leavedCategory(index)" @click="$push(category.route)">
           <h4>{{ category.name }}</h4>
         </div>
       </div>
@@ -30,7 +32,8 @@ export default {
     return {
       categories: [
         {
-          name: 'Perfume'
+          name: 'Perfume',
+          route: '/product'
         }
       ]
     }
