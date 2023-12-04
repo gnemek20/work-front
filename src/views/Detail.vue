@@ -38,7 +38,9 @@
           <div class="bottom">
             <div class="choice-box">
               <div class="steam">
-                <button>찜</button>
+                <button ref="steamButton" @click="clickSteamButton(product.steamed)">
+                  <img ref="steamedImage" src="@/assets/icons/steamed.svg" width="21">
+                </button>
               </div>
               <div class="cart">
                 <button>장바구니</button>
@@ -65,8 +67,61 @@ export default {
     return {
       product: {
         name: '개쩌는 이름',
+        product_id: this.$route.query['productId'],
         product_price: '1',
-        delivery_price: '0'
+        delivery_price: '0',
+        steamed: false
+      }
+    }
+  },
+  mounted() {
+    if (this.$session.get('id') !== undefined) {
+      const steamButton = this.$refs['steamButton'];
+      const steamedImage = this.$refs['steamedImage'];
+
+      this.$post('/users/getProductSteamed', {
+        id: this.$session.get('id'),
+        product_id: this.product.product_id
+      }).then((res) => {
+        if (res.status === 200 && res.data.steamed) {
+          this.product.steamed = res.data.steamed;
+          steamButton.style.backgroundColor = '#ffdbeb';
+          steamedImage.style.filter = 'invert(1)';
+        }
+      });
+    }
+  },
+  methods: {
+    clickSteamButton(steamed) {
+      if (this.$session.get('id') === undefined) this.$query('/signin', {beforePageLocation: this.$route.path.replace('/', '')});
+      else {
+        const steamButton = this.$refs['steamButton'];
+        const steamedImage = this.$refs['steamedImage'];
+
+        if (steamed) {
+          this.$post('/users/deleteProductSteamed', {
+            id: this.$session.get('id'),
+            product_id: this.product.product_id
+          }).then((res) => {
+            if (res.status === 200) {
+              steamButton.style.backgroundColor = 'transparent';
+              steamedImage.style.filter = 'none';
+              this.product.steamed = false;
+            }
+          });
+        }
+        else {
+          this.$post('/users/setProductSteamed', {
+            id: this.$session.get('id'),
+            product_id: this.product.product_id
+          }).then((res) => {
+            if (res.status === 200) {
+              steamButton.style.backgroundColor = '#ffdbeb';
+              steamedImage.style.filter = 'invert(1)';
+              this.product.steamed = true;
+            }
+          });
+        }
       }
     }
   }
@@ -143,6 +198,17 @@ export default {
         .steam {
           display: flex;
           width: 100px;
+
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+
+            img {
+              filter: none
+            }
+          }
         }
         .purchase {
           button {

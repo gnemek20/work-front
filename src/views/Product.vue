@@ -21,7 +21,7 @@
         </div>
         <div class="flex justify-center">
           <div class="list">
-            <p v-for="count in 10" v-bind:key="count">{{ count }}</p>
+            <p class="cursor-pointer" v-for="count in 10" v-bind:key="count" @click="$query('/detail', {productId: count})">{{ count }}</p>
           </div>
         </div>
       </div>
