@@ -10,10 +10,10 @@
         </div>
       </div>
       <div class="state">
-        <div>
+        <div @click="$push('/member')">
           <img src="@/assets/icons/user.svg" width="21px">
         </div>
-        <div>
+        <div @click="$push('/steamed')">
           <img src="@/assets/icons/steamed.svg" width="21px">
         </div>
         <div>
